@@ -1,0 +1,19 @@
+<p>
+    <%= content_tag(:label, l(:zulip_settings_label_email)) %>
+    <%= text_field_tag 'settings[zulip_email]', @settings[:zulip_email] %>
+</p>
+
+<p>
+    <%= content_tag(:label, l(:zulip_settings_label_api_key)) %>
+    <%= text_field_tag 'settings[zulip_api_key]', @settings[:zulip_api_key] %>
+</p>
+
+<p>
+    <%= content_tag(:label, l(:zulip_settings_label_stream)) %>
+    <%= text_field_tag 'settings[zulip_stream]', @settings[:zulip_stream] %>
+</p>
+
+<p>
+    <%= content_tag(:label, l(:zulip_settings_label_projects)) %>
+    <%= select_tag 'settings[projects][]', project_tree_options_for_select(Project.active, :selected => Project.find_by_id(@settings[:projects])), :multiple => true, :size => Project.active.size %>
+</p>

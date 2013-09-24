@@ -1,0 +1,9 @@
+en:
+  zulip_settings_header: Zulip Plugin Configuration
+  zulip_settings_label_stream: Stream name
+  zulip_settings_label_email: Zulip Email
+  zulip_settings_label_api_key: Zulip API key
+  zulip_settings_label_projects: Projects
+  field_zulip_email: Zulip Email
+  field_zulip_api_key: Zulip API key
+  field_zulip_stream: Stream name
