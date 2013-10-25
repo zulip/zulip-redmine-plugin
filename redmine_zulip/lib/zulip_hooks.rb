@@ -109,7 +109,7 @@ class NotificationHook < Redmine::Hook::Listener
         http = Net::HTTP.new("api.zulip.com", 443)
         http.use_ssl = true
 
-        req = Net::HTTP::Post.new("/api/v1/send_message")
+        req = Net::HTTP::Post.new("/v1/send_message")
         req.set_form_data(data)
 
         begin
