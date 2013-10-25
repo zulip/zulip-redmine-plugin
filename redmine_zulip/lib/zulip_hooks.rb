@@ -104,7 +104,7 @@ class NotificationHook < Redmine::Hook::Listener
                 "subject" => project.name,
                 "content" => content}
 
-        Rails.logger.info "Forwarding to Zulip: #{data[:content]}"
+        Rails.logger.info "Forwarding to Zulip: #{data['content']}"
 
         http = Net::HTTP.new("api.zulip.com", 443)
         http.use_ssl = true
