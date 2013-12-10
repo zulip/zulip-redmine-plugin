@@ -97,9 +97,7 @@ class NotificationHook < Redmine::Hook::Listener
 
     def send_zulip_message(content, project)
 
-        data = {"email" => zulip_email(project),
-                "api-key" => zulip_api_key(project),
-                "to" => zulip_stream(project),
+        data = {"to" => zulip_stream(project),
                 "type" => "stream",
                 "subject" => project.name,
                 "content" => content}
@@ -109,7 +107,8 @@ class NotificationHook < Redmine::Hook::Listener
         http = Net::HTTP.new("api.zulip.com", 443)
         http.use_ssl = true
 
-        req = Net::HTTP::Post.new("/v1/send_message")
+        req = Net::HTTP::Post.new("/v1/messages")
+        req.basic_auth zulip_email(project), zulip_api_key(project)
         req.set_form_data(data)
 
         begin
