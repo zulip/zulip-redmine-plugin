@@ -109,6 +109,7 @@ class NotificationHook < Redmine::Hook::Listener
 
         req = Net::HTTP::Post.new("/v1/messages")
         req.basic_auth zulip_email(project), zulip_api_key(project)
+        req.add_field('User-Agent', 'ZulipRedmine/0.1')
         req.set_form_data(data)
 
         begin
