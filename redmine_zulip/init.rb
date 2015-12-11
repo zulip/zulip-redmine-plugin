@@ -17,5 +17,7 @@ Redmine::Plugin.register :redmine_zulip do
              :default => {
              :zulip_email => "",
              :zulip_api_key => "",
-             :zulip_stream => ""}
+             :zulip_stream => "",
+             :zulip_server => "",
+             :zulip_port => ""}
 end

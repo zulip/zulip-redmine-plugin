@@ -1,6 +1,8 @@
 en:
   zulip_settings_header: Zulip Plugin Configuration
   zulip_settings_label_stream: Stream name
+  zulip_settings_label_server: Server URL
+  zulip_settings_label_port: Server Port
   zulip_settings_label_email: Zulip Email
   zulip_settings_label_api_key: Zulip API key
   zulip_settings_label_projects: Projects

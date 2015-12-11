@@ -14,6 +14,16 @@
 </p>
 
 <p>
+    <%= content_tag(:label, l(:zulip_settings_label_server)) %>
+    <%= text_field_tag 'settings[zulip_server]', @settings[:zulip_server] %>
+</p>
+
+<p>
+    <%= content_tag(:label, l(:zulip_settings_label_port)) %>
+    <%= text_field_tag 'settings[zulip_port]', @settings[:zulip_port] %>
+</p>
+
+<p>
     <%= content_tag(:label, l(:zulip_settings_label_projects)) %>
     <%= select_tag 'settings[projects][]', project_tree_options_for_select(Project.active, :selected => Project.find_by_id(@settings[:projects])), :multiple => true, :size => Project.active.size %>
 </p>
