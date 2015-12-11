@@ -55,13 +55,15 @@ class NotificationHook < Redmine::Hook::Listener
         # The plugin can be configured as a system setting or per-project.
 
         if !project.zulip_email.empty? && !project.zulip_api_key.empty? &&
-           !project.zulip_stream.empty?
+           !project.zulip_stream.empty? && Setting.plugin_redmine_zulip[:projects] &&
+            Setting.plugin_redmine_zulip[:zulip_server]
             # We have full per-project settings.
             return true
         elsif Setting.plugin_redmine_zulip[:projects] &&
             Setting.plugin_redmine_zulip[:zulip_email] &&
             Setting.plugin_redmine_zulip[:zulip_api_key] &&
-            Setting.plugin_redmine_zulip[:zulip_stream]
+            Setting.plugin_redmine_zulip[:zulip_stream] &&
+            Setting.plugin_redmine_zulip[:zulip_server]
             # We have full global settings.
             return true
         end
@@ -91,6 +93,24 @@ class NotificationHook < Redmine::Hook::Listener
         return Setting.plugin_redmine_zulip[:zulip_stream]
     end
 
+   def zulip_server()
+       return Setting.plugin_redmine_zulip[:zulip_server]
+   end
+   
+   def zulip_port()
+      if Setting.plugin_redmine_zulip[:zulip_port]
+        return Setting.plugin_redmine_zulip[:zulip_port]
+      end
+      return 443
+   end
+
+   def zulip_api_basename()
+     if Setting.plugin_redmine_zulip[:zulip_server]["api.zulip.com"]
+       return ""
+     end
+     return "/api"
+   end
+
     def url(issue)
         return "#{Setting[:protocol]}://#{Setting[:host_name]}/issues/#{issue.id}"
     end
@@ -104,10 +124,10 @@ class NotificationHook < Redmine::Hook::Listener
 
         Rails.logger.info "Forwarding to Zulip: #{data['content']}"
 
-        http = Net::HTTP.new("api.zulip.com", 443)
+        http = Net::HTTP.new(zulip_server(), zulip_port())
         http.use_ssl = true
 
-        req = Net::HTTP::Post.new("/v1/messages")
+        req = Net::HTTP::Post.new(zulip_api_basename() + "/v1/messages")
         req.basic_auth zulip_email(project), zulip_api_key(project)
         req.add_field('User-Agent', 'ZulipRedmine/0.1')
         req.set_form_data(data)
