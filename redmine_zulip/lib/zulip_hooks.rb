@@ -105,10 +105,11 @@ class NotificationHook < Redmine::Hook::Listener
    end
 
    def zulip_api_basename()
-     if Setting.plugin_redmine_zulip[:zulip_server]["api.zulip.com"]
-       return ""
+     basename = Setting.plugin_redmine_zulip[:zulip_server].sub %r{^https?:(//|\\\\)}i, ''
+     if not basename.end_with? "/api"
+         basename = basename.concat "/api"
      end
-     return "/api"
+     return basename
    end
 
     def url(issue)
