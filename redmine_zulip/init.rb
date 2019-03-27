@@ -1,8 +1,10 @@
+require_relative "lib/version"
+
 Redmine::Plugin.register :redmine_zulip do
     name 'Zulip'
     author 'Zulip, Inc.'
     description 'Sends notifications to Zulip.'
-    version '0.91'
+    version RedmineZulip::VERSION
     url 'https://github.com/zulip/zulip-redmine-plugin'
     author_url 'https://www.zulip.org/'
 
