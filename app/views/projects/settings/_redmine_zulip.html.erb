@@ -1,0 +1,21 @@
+<%= form_for @project do |f| %>
+  <div class="box tabular">
+    <p>
+      <%= content_tag(:label, l(:field_zulip_stream)) %>
+      <%= f.text_field :zulip_stream %>
+    </p>
+    <p>
+      <%= content_tag(:label, l(:field_zulip_private_messages)) %>
+      <%= f.check_box :zulip_private_messages %>
+    </p>
+    <p>
+      <%= content_tag(:label, l(:field_zulip_subject_issue)) %>
+      <%= f.check_box :zulip_subject_issue %>
+    </p>
+    <p>
+      <%= content_tag(:label, l(:field_zulip_subject_version)) %>
+      <%= f.check_box :zulip_subject_version %>
+    </p>
+  </div>
+  <%= f.submit "Save" %>
+<% end %>

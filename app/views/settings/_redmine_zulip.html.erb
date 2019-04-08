@@ -1,0 +1,14 @@
+<p>
+  <%= content_tag(:label, l(:zulip_settings_label_url)) %>
+  <%= text_field_tag 'settings[zulip_url]', @settings["zulip_url"] %>
+</p>
+
+<p>
+  <%= content_tag(:label, l(:zulip_settings_label_email)) %>
+  <%= text_field_tag 'settings[zulip_email]', @settings["zulip_email"] %>
+</p>
+
+<p>
+  <%= content_tag(:label, l(:zulip_settings_label_api_key)) %>
+  <%= text_field_tag 'settings[zulip_api_key]', @settings["zulip_api_key"] %>
+</p>
