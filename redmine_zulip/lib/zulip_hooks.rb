@@ -96,7 +96,7 @@ class NotificationHook < Redmine::Hook::Listener
    def zulip_server()
        return Setting.plugin_redmine_zulip[:zulip_server]
    end
-   
+
    def zulip_port()
       if Setting.plugin_redmine_zulip[:zulip_port]
         return Setting.plugin_redmine_zulip[:zulip_port]
@@ -130,7 +130,7 @@ class NotificationHook < Redmine::Hook::Listener
 
         req = Net::HTTP::Post.new(zulip_api_basename() + "/v1/messages")
         req.basic_auth zulip_email(project), zulip_api_key(project)
-        req.add_field('User-Agent', 'ZulipRedmine/0.1')
+        req.add_field('User-Agent', "ZulipRedmine/#{RedmineZulip::VERSION}")
         req.set_form_data(data)
 
         begin
