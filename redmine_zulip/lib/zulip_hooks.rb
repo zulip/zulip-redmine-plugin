@@ -55,15 +55,15 @@ class NotificationHook < Redmine::Hook::Listener
         # The plugin can be configured as a system setting or per-project.
 
         if !project.zulip_email.empty? && !project.zulip_api_key.empty? &&
-           !project.zulip_stream.empty? && Setting.plugin_redmine_zulip[:projects] &&
-            Setting.plugin_redmine_zulip[:zulip_server]
+           !project.zulip_stream.empty? && Setting.plugin_redmine_zulip["projects"] &&
+            Setting.plugin_redmine_zulip["zulip_server"]
             # We have full per-project settings.
             return true
-        elsif Setting.plugin_redmine_zulip[:projects] &&
-            Setting.plugin_redmine_zulip[:zulip_email] &&
-            Setting.plugin_redmine_zulip[:zulip_api_key] &&
-            Setting.plugin_redmine_zulip[:zulip_stream] &&
-            Setting.plugin_redmine_zulip[:zulip_server]
+        elsif Setting.plugin_redmine_zulip["projects"] &&
+            Setting.plugin_redmine_zulip["zulip_email"] &&
+            Setting.plugin_redmine_zulip["zulip_api_key"] &&
+            Setting.plugin_redmine_zulip["zulip_stream"] &&
+            Setting.plugin_redmine_zulip["zulip_server"]
             # We have full global settings.
             return true
         end
@@ -76,40 +76,49 @@ class NotificationHook < Redmine::Hook::Listener
         if !project.zulip_email.empty?
             return project.zulip_email
         end
-        return Setting.plugin_redmine_zulip[:zulip_email]
+        return Setting.plugin_redmine_zulip["zulip_email"]
     end
 
     def zulip_api_key(project)
         if !project.zulip_api_key.empty?
             return project.zulip_api_key
         end
-        return Setting.plugin_redmine_zulip[:zulip_api_key]
+        return Setting.plugin_redmine_zulip["zulip_api_key"]
     end
 
     def zulip_stream(project)
         if !project.zulip_stream.empty?
             return project.zulip_stream
         end
-        return Setting.plugin_redmine_zulip[:zulip_stream]
+        return Setting.plugin_redmine_zulip["zulip_stream"]
     end
 
    def zulip_server()
-       return Setting.plugin_redmine_zulip[:zulip_server]
+     server = Setting.plugin_redmine_zulip["zulip_server"].sub(
+       %r{^https?:(//|\\\\)}i, ""
+     )
+     # Remove /api suffix
+     server.slice!("/api")
+     server
    end
 
    def zulip_port()
-      if Setting.plugin_redmine_zulip[:zulip_port]
-        return Setting.plugin_redmine_zulip[:zulip_port]
+      if Setting.plugin_redmine_zulip["zulip_port"].present?
+        return Setting.plugin_redmine_zulip["zulip_port"]
       end
       return 443
    end
 
    def zulip_api_basename()
-     basename = Setting.plugin_redmine_zulip[:zulip_server].sub %r{^https?:(//|\\\\)}i, ''
-     if not basename.end_with? "/api"
-         basename = basename.concat "/api"
+     basename = Setting.plugin_redmine_zulip["zulip_server"]
+     unless basename.end_with?("/api")
+       basename << "/api"
      end
-     return basename
+     if zulip_port == 443 && !basename.start_with?("https://")
+       "https://#{basename}"
+     else
+       basename
+     end
    end
 
     def url(issue)
@@ -128,8 +137,8 @@ class NotificationHook < Redmine::Hook::Listener
         http = Net::HTTP.new(zulip_server(), zulip_port())
         http.use_ssl = true
 
-        req = Net::HTTP::Post.new(zulip_api_basename() + "/v1/messages")
-        req.basic_auth zulip_email(project), zulip_api_key(project)
+        req = Net::HTTP::Post.new("#{zulip_api_basename()}/v1/messages")
+        req.basic_auth(zulip_email(project), zulip_api_key(project))
         req.add_field('User-Agent', "ZulipRedmine/#{RedmineZulip::VERSION}")
         req.set_form_data(data)
 
