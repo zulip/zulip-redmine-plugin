@@ -133,10 +133,9 @@ class NotificationHook < Redmine::Hook::Listener
         req.add_field('User-Agent', "ZulipRedmine/#{RedmineZulip::VERSION}")
         req.set_form_data(data)
 
-        begin
-            http.request(req)
-        rescue Net::HTTPBadResponse => e
-            Rails.logger.error "Error while POSTing to Zulip: #{e}"
+        res = http.request(req)
+        unless res.code == "200"
+          Rails.logger.error "Error while POSTing to Zulip: #{res.body}"
         end
     end
 end
