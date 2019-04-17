@@ -1,4 +1,9 @@
 <p>
+    <%= content_tag(:label, l(:zulip_settings_label_url)) %>
+    <%= text_field_tag 'settings[zulip_url]', @settings["zulip_url"] %>
+</p>
+
+<p>
     <%= content_tag(:label, l(:zulip_settings_label_email)) %>
     <%= text_field_tag 'settings[zulip_email]', @settings["zulip_email"] %>
 </p>
@@ -11,16 +16,6 @@
 <p>
     <%= content_tag(:label, l(:zulip_settings_label_stream)) %>
     <%= text_field_tag 'settings[zulip_stream]', @settings["zulip_stream"] %>
-</p>
-
-<p>
-    <%= content_tag(:label, l(:zulip_settings_label_server)) %>
-    <%= text_field_tag 'settings[zulip_server]', @settings["zulip_server"] %>
-</p>
-
-<p>
-    <%= content_tag(:label, l(:zulip_settings_label_port)) %>
-    <%= text_field_tag 'settings[zulip_port]', @settings["zulip_port"] %>
 </p>
 
 <p>

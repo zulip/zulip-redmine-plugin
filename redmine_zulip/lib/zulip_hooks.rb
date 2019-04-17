@@ -54,97 +54,79 @@ class NotificationHook < Redmine::Hook::Listener
     def configured(project)
         # The plugin can be configured as a system setting or per-project.
 
-        if !project.zulip_email.empty? && !project.zulip_api_key.empty? &&
-           !project.zulip_stream.empty? && Setting.plugin_redmine_zulip["projects"] &&
-            Setting.plugin_redmine_zulip["zulip_server"]
+        if project.zulip_email.present? &&
+             project.zulip_api_key.present? &&
+             project.zulip_stream.present? &&
+             Setting.plugin_redmine_zulip["projects"] &&
+             Setting.plugin_redmine_zulip["zulip_url"].present?
             # We have full per-project settings.
             return true
-        elsif Setting.plugin_redmine_zulip["projects"] &&
-            Setting.plugin_redmine_zulip["zulip_email"] &&
-            Setting.plugin_redmine_zulip["zulip_api_key"] &&
-            Setting.plugin_redmine_zulip["zulip_stream"] &&
-            Setting.plugin_redmine_zulip["zulip_server"]
+        end
+        if Setting.plugin_redmine_zulip["projects"] &&
+             Setting.plugin_redmine_zulip["zulip_email"].present? &&
+             Setting.plugin_redmine_zulip["zulip_api_key"].present? &&
+             Setting.plugin_redmine_zulip["zulip_stream"].present? &&
+             Setting.plugin_redmine_zulip["zulip_url"].present?
             # We have full global settings.
             return true
         end
 
         Rails.logger.info "Missing config, can't sent to Zulip!"
-        return false
+        false
     end
 
     def zulip_email(project)
-        if !project.zulip_email.empty?
+        if project.zulip_email.present?
             return project.zulip_email
         end
-        return Setting.plugin_redmine_zulip["zulip_email"]
+        Setting.plugin_redmine_zulip["zulip_email"]
     end
 
     def zulip_api_key(project)
-        if !project.zulip_api_key.empty?
+        if project.zulip_api_key.present?
             return project.zulip_api_key
         end
-        return Setting.plugin_redmine_zulip["zulip_api_key"]
+        Setting.plugin_redmine_zulip["zulip_api_key"]
     end
 
     def zulip_stream(project)
-        if !project.zulip_stream.empty?
+        if project.zulip_stream.present?
             return project.zulip_stream
         end
-        return Setting.plugin_redmine_zulip["zulip_stream"]
+        Setting.plugin_redmine_zulip["zulip_stream"]
     end
 
-   def zulip_server()
-     server = Setting.plugin_redmine_zulip["zulip_server"].sub(
-       %r{^https?:(//|\\\\)}i, ""
-     )
-     # Remove /api suffix
-     server.slice!("/api")
-     server
+   def zulip_url()
+       Setting.plugin_redmine_zulip["zulip_url"]
    end
 
-   def zulip_port()
-      if Setting.plugin_redmine_zulip["zulip_port"].present?
-        return Setting.plugin_redmine_zulip["zulip_port"]
-      end
-      return 443
+   def url(issue)
+       "#{Setting[:protocol]}://#{Setting[:host_name]}/issues/#{issue.id}"
    end
 
-   def zulip_api_basename()
-     basename = Setting.plugin_redmine_zulip["zulip_server"]
-     unless basename.end_with?("/api")
-       basename << "/api"
-     end
-     if zulip_port == 443 && !basename.start_with?("https://")
-       "https://#{basename}"
-     else
-       basename
-     end
+   def send_zulip_message(content, project)
+       data = {"to" => zulip_stream(project),
+               "type" => "stream",
+               "subject" => project.name,
+               "content" => content}
+
+       Rails.logger.info "Forwarding to Zulip: #{data['content']}"
+
+       uri = URI("#{zulip_url}/v1/messages")
+
+       req = Net::HTTP::Post.new(uri)
+       req.basic_auth(zulip_email(project), zulip_api_key(project))
+       req["User-Agent"] = "ZulipRedmine/#{RedmineZulip::VERSION}"
+       req.set_form_data(data)
+
+       res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+         http.request(req)
+       end
+
+       if res.code == "200"
+         Rails.logger.info "Zulip message sent!"
+       else
+         Rails.logger.error "Error while POSTing to Zulip: #{res.body}"
+       end
    end
-
-    def url(issue)
-        return "#{Setting[:protocol]}://#{Setting[:host_name]}/issues/#{issue.id}"
-    end
-
-    def send_zulip_message(content, project)
-
-        data = {"to" => zulip_stream(project),
-                "type" => "stream",
-                "subject" => project.name,
-                "content" => content}
-
-        Rails.logger.info "Forwarding to Zulip: #{data['content']}"
-
-        http = Net::HTTP.new(zulip_server(), zulip_port())
-        http.use_ssl = true
-
-        req = Net::HTTP::Post.new("#{zulip_api_basename()}/v1/messages")
-        req.basic_auth(zulip_email(project), zulip_api_key(project))
-        req.add_field('User-Agent', "ZulipRedmine/#{RedmineZulip::VERSION}")
-        req.set_form_data(data)
-
-        res = http.request(req)
-        unless res.code == "200"
-          Rails.logger.error "Error while POSTing to Zulip: #{res.body}"
-        end
-    end
 end
