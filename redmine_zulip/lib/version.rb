@@ -1,3 +1,3 @@
 module RedmineZulip
-  VERSION = "0.91"
+  VERSION = "1.0"
 end
