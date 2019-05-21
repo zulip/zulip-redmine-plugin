@@ -1,0 +1,56 @@
+en:
+  label_redmine_zulip: Zulip
+  zulip_settings_header: Zulip Plugin Configuration
+  zulip_settings_label_url: Zulip URL
+  zulip_settings_label_email: Zulip Bot Email
+  zulip_settings_label_api_key: Zulip Bot API key
+  field_zulip_stream: Stream name
+  field_zulip_private_messages: Get notified on assignments
+  field_zulip_subject_issue: Get notified on issues update
+  field_zulip_subject_version: Get notified on milestone progress
+  zulip_notify_assignment: >
+    %{user} **assigned** issue [%{id}: %{subject}](%{url}) to **you**:
+
+
+    ~~~quote
+
+    %{description}
+
+    ~~~
+
+
+    * **%{status_label}**: %{status}
+
+
+  zulip_notify_unassignment: >
+    %{user} **unassigned** issue [%{id}: %{subject}](%{url}) from **you**.
+
+  zulip_notify_updated: >
+    %{user} **updated** issue [%{id}: %{subject}](%{url}).
+
+  zulip_notify_destroyed: >
+    %{user} **deleted** issue **%{id}: %{subject}**.
+
+  zulip_init_issue_subject: >
+    %{user} **created** issue [%{id}: %{subject}](%{url}):
+
+
+    ~~~quote
+
+    %{description}
+
+    ~~~
+
+    * **%{assigned_to_label}**: %{assigned_to}
+
+    * **%{status_label}**: %{status}
+
+  zulip_update_version_subject_added: >
+    %{user} **added** issue [%{id}: %{subject}](%{url}) to version **%{fixed_version}**.
+
+  zulip_update_version_subject_removed: >
+    %{user} **removed** issue [%{id}: %{subject}](%{url}) from version **%{fixed_version}**.
+
+  zulip_update_version_subject_status: >
+    %{user} **changed status** of issue [%{id}: %{subject}](%{url}) from
+    *~~%{previous_status}~~* to **%{current_status}**.
