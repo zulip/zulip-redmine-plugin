@@ -41,7 +41,6 @@ module RedmineZulip
 
       after_commit :init_issue_subject, if: proc { |issue|
         RedmineZulip.api.configured? &&
-          issue.fixed_version_id.present? &&
           issue.project.zulip_subject_issue &&
           issue.project.zulip_stream.present? &&
           issue.previous_changes.include?("id")
@@ -50,7 +49,6 @@ module RedmineZulip
       after_commit :update_issue_subject, if: proc { |issue|
         RedmineZulip.api.configured? &&
           !issue.destroyed? &&
-          issue.fixed_version_id.present? &&
           issue.project.zulip_subject_issue &&
           issue.project.zulip_stream.present? &&
           !issue.previous_changes.include?("id")
@@ -59,7 +57,6 @@ module RedmineZulip
       after_commit :update_issue_subject_destroyed, if: proc { |issue|
         RedmineZulip.api.configured? &&
           issue.destroyed? &&
-          issue.fixed_version_id.present? &&
           issue.project.zulip_subject_issue &&
           issue.project.zulip_stream.present?
       }
