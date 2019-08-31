@@ -1,7 +1,7 @@
 require "redmine_zulip/issue_patch"
 
 module RedmineZulip
-  VERSION = "2.0.1"
+  VERSION = "3.0"
 
   def self.api
     RedmineZulip::Api.new
