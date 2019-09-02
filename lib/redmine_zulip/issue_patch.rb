@@ -153,7 +153,7 @@ module RedmineZulip
         assigned_to_label: Issue.human_attribute_name(:assigned_to, locale: locale),
         assigned_to: assigned_to || "-",
         status_label: Issue.human_attribute_name(:status, locale: locale),
-        status: status&.name
+        status: status.nil? ? nil : status.name
       })
       if fixed_version.present?
         version_label = Issue.human_attribute_name(:fixed_version, locale: locale)
