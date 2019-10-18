@@ -4,10 +4,19 @@ en:
   zulip_settings_label_url: Zulip URL
   zulip_settings_label_email: Zulip Bot Email
   zulip_settings_label_api_key: Zulip Bot API key
-  field_zulip_stream: Stream name
-  field_zulip_private_messages: Get notified on assignments
-  field_zulip_subject_issue: Get notified on issues update
-  field_zulip_subject_version: Get notified on milestone progress
+  zulip_settings_label_stream_pattern: Stream pattern
+  zulip_settings_label_issue_updates_subject_pattern: >
+    Issue updates subject pattern
+  zulip_settings_label_version_updates_subject_pattern: >
+    Version updates subject pattern
+  field_zulip_url: Zulip URL
+  field_zulip_email: Zulip e-mail
+  field_zulip_api_key: Zulip Bot API key
+  field_zulip_stream_pattern: Stream name pattern
+  field_zulip_issue_updates_subject_pattern:  >
+    Issue updateds subject pattern
+  field_zulip_version_updates_subject_pattern: >
+    Version updates subject pattern
   zulip_notify_assignment: >
     %{user} **assigned** issue [%{id}: %{subject}](%{url}) to **you**:
 
