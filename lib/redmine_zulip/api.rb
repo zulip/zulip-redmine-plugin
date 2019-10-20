@@ -41,6 +41,8 @@ module RedmineZulip
           http.request(req)
         end
         res.code == "200"
+      rescue SocketError => _
+        false
       end
     end
   end
