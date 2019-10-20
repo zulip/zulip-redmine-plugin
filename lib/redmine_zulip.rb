@@ -1,5 +1,5 @@
 module RedmineZulip
-  VERSION = "2.1"
+  VERSION = "2.1-beta"
 end
 
 Rails.configuration.to_prepare do
