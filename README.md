@@ -47,8 +47,8 @@ following:
 * Issue updates subject __*__
 * Version updates subject __*__
 
-_*_ You may set dynamic values by using the following self-explanatory
-variables:
+_* You may set dynamic values by using the following self-explanatory
+variables:_
 
 * ${issue_id}
 * ${issue_subject}
