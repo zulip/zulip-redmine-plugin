@@ -1,20 +1,28 @@
 <%= form_for @project do |f| %>
   <div class="box tabular">
     <p>
-      <%= content_tag(:label, l(:field_zulip_stream)) %>
-      <%= f.text_field :zulip_stream %>
+      <%= content_tag(:label, l(:field_zulip_url)) %>
+      <%= f.text_field :zulip_url %>
     </p>
     <p>
-      <%= content_tag(:label, l(:field_zulip_private_messages)) %>
-      <%= f.check_box :zulip_private_messages %>
+      <%= content_tag(:label, l(:field_zulip_email)) %>
+      <%= f.text_field :zulip_email %>
     </p>
     <p>
-      <%= content_tag(:label, l(:field_zulip_subject_issue)) %>
-      <%= f.check_box :zulip_subject_issue %>
+      <%= content_tag(:label, l(:field_zulip_api_key)) %>
+      <%= f.text_field :zulip_api_key %>
     </p>
     <p>
-      <%= content_tag(:label, l(:field_zulip_subject_version)) %>
-      <%= f.check_box :zulip_subject_version %>
+      <%= content_tag(:label, l(:field_zulip_stream_expression)) %>
+      <%= f.text_field :zulip_stream_expression %>
+    </p>
+    <p>
+      <%= content_tag(:label, l(:field_zulip_issue_updates_subject_expression)) %>
+      <%= f.text_field :zulip_issue_updates_subject_expression %>
+    </p>
+    <p>
+      <%= content_tag(:label, l(:field_zulip_version_updates_subject_expression)) %>
+      <%= f.text_field :zulip_version_updates_subject_expression %>
     </p>
   </div>
   <%= f.submit "Save" %>

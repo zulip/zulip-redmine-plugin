@@ -3,12 +3,21 @@ fr:
   zulip_settings_label_url: URL de l'instance Zulip
   zulip_settings_label_email: E-mail du Robot Zulip
   zulip_settings_label_api_key: API key du Robot Zulip
-  field_zulip_stream: Nom du canal
-  field_zulip_private_messages: Notifier les attributions de demandes
-  field_zulip_subject_issue: Notifier la mise à jour des demandes
-  field_zulip_subject_version: Notifier l'avancement des versions
+  zulip_settings_label_stream_expression: Expression du nom du canal
+  zulip_settings_label_issue_updates_subject_expression: >
+    Expression des sujets des mises à jour de demandes
+  zulip_settings_label_version_updates_subject_expression: >
+    Expression des sujets des mises à jour des versions
+  field_zulip_url: URL de l'instance Zulip
+  field_zulip_email: E-mail du Robot Zulip
+  field_zulip_api_key: API key du Robot Zulip
+  field_zulip_stream_expression: Expression du nom du canal
+  field_zulip_issue_updates_subject_expression:  >
+    Expression du sujet des mises à jour de demandes
+  field_zulip_version_updates_subject_expression: >
+    Expression du sujet des mises à jour des versions
   zulip_notify_assignment: >
-    %{user} **vous a assigné** la demande [%{id}: %{subject}](%{url}) :
+    %{user} **vous a assigné** la demande [[%{project}#%{id}] %{subject}](%{url}) :
 
 
     ~~~quote
@@ -21,16 +30,16 @@ fr:
     * **%{status_label}**: %{status}
 
   zulip_notify_unassignment: >
-    %{user} **vous a désattributé** la demande [%{id}: %{subject}](%{url}).
+    %{user} **vous a désattributé** la demande [[%{project}#%{id}] %{subject}](%{url}).
 
   zulip_notify_updated: >
-    %{user} **a mis à jour** la demande [%{id}: %{subject}](%{url}).
+    %{user} **a mis à jour** la demande [[%{project}#%{id}] %{subject}](%{url}).
 
   zulip_notify_destroyed: >
     %{user} **a supprimé** la demande **%{id}: %{subject}**.
 
   zulip_init_issue_subject: >
-    %{user} **a créé** la demande [%{id}: %{subject}](%{url}) :
+    %{user} **a créé** la demande [[%{project}#%{id}] %{subject}](%{url}) :
 
 
     ~~~quote
@@ -44,11 +53,11 @@ fr:
     * **%{status_label}**: %{status}
 
   zulip_update_version_subject_added: >
-    %{user} **a ajouté** la demande [%{id}: %{subject}](%{url}) à la version **%{fixed_version}**.
+    %{user} **a ajouté** la demande [[%{project}#%{id}] %{subject}](%{url}) à la version **%{fixed_version}**.
 
   zulip_update_version_subject_removed: >
-    %{user} **a retiré** la demande [%{id}: %{subject}](%{url}) de la version **%{fixed_version}**.
+    %{user} **a retiré** la demande [[%{project}#%{id}] %{subject}](%{url}) de la version **%{fixed_version}**.
 
   zulip_update_version_subject_status: >
-    %{user} **a mis a jour le statut** de la demande [%{id}: %{subject}](%{url}) de
+    %{user} **a mis a jour le statut** de la demande [[%{project}#%{id}] %{subject}](%{url}) de
     *~~%{previous_status}~~* à **%{current_status}**.

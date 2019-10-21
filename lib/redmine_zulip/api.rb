@@ -2,10 +2,10 @@ module RedmineZulip
   class Api
     attr_reader :url, :email, :key
 
-    def initialize
-      @url = "#{Setting.plugin_redmine_zulip["zulip_url"]}/api/v1"
-      @key = Setting.plugin_redmine_zulip["zulip_api_key"]
-      @email = Setting.plugin_redmine_zulip["zulip_email"]
+    def initialize(url:, email:, key:)
+      @url = "#{url}/api/v1"
+      @key = key
+      @email = email
     end
 
     def configured?
@@ -41,6 +41,8 @@ module RedmineZulip
           http.request(req)
         end
         res.code == "200"
+      rescue SocketError => _
+        false
       end
     end
   end

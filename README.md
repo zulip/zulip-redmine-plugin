@@ -2,6 +2,14 @@
 
 Get Zulip notifications for your Redmine issues!
 
+## Compatibility
+
+| Redmine Zulip Plugin version | Redmine version |
+| ---------------------------- | --------------- |
+| 1.x                          | 3.x             |
+| 2.x                          | 3.x             |
+| 3.x                          | 4.x             |
+
 ## Installing
 
 0. Please navigate to your Redmine instance's root directory by running:

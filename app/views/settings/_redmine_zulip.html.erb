@@ -12,3 +12,18 @@
   <%= content_tag(:label, l(:zulip_settings_label_api_key)) %>
   <%= text_field_tag 'settings[zulip_api_key]', @settings["zulip_api_key"] %>
 </p>
+
+<p>
+  <%= content_tag(:label, l(:zulip_settings_label_stream_expression)) %>
+  <%= text_field_tag 'settings[zulip_stream_expression]', @settings["zulip_stream_expression"] %>
+</p>
+
+<p>
+  <%= content_tag(:label, l(:zulip_settings_label_issue_updates_subject_expression)) %>
+  <%= text_field_tag 'settings[zulip_issue_updates_subject_expression]', @settings["zulip_issue_updates_subject_expression"] %>
+</p>
+
+<p>
+  <%= content_tag(:label, l(:zulip_settings_label_version_updates_subject_expression)) %>
+  <%= text_field_tag 'settings[zulip_version_updates_subject_expression]', @settings["zulip_version_updates_subject_expression"] %>
+</p>
