@@ -4,19 +4,19 @@ en:
   zulip_settings_label_url: Zulip URL
   zulip_settings_label_email: Zulip Bot Email
   zulip_settings_label_api_key: Zulip Bot API key
-  zulip_settings_label_stream_expression: Stream name expression
+  zulip_settings_label_stream_expression: Stream name
   zulip_settings_label_issue_updates_subject_expression: >
-    Issue updates subject expression
+    Issue updates subject
   zulip_settings_label_version_updates_subject_expression: >
-    Version updates subject expression
+    Version updates subject
   field_zulip_url: Zulip URL
   field_zulip_email: Zulip e-mail
   field_zulip_api_key: Zulip Bot API key
-  field_zulip_stream_expression: Stream name expression
+  field_zulip_stream_expression: Stream name
   field_zulip_issue_updates_subject_expression:  >
-    Issue updates subject expression
+    Issue updates subject
   field_zulip_version_updates_subject_expression: >
-    Version updates subject expression
+    Version updates subject
   zulip_notify_assignment: >
     %{user} **assigned** issue [[%{project}#%{id}] %{subject}](%{url}) to **you**:
 

@@ -25,7 +25,7 @@ module RedmineZulip
     end
 
     def stream
-      replace_pattern(
+      evaluate_expression(
         @issue.project.zulip_stream_expression.present? ?
           @issue.project.zulip_stream_expression :
           Setting.plugin_redmine_zulip["zulip_stream_expression"]
@@ -33,7 +33,7 @@ module RedmineZulip
     end
 
     def issue_updates_subject
-      replace_pattern(
+      evaluate_expression(
         @issue.project.zulip_issue_updates_subject_expression.present? ?
           @issue.project.zulip_issue_updates_subject_expression :
           Setting.plugin_redmine_zulip["zulip_issue_updates_subject_expression"]
@@ -41,7 +41,7 @@ module RedmineZulip
     end
 
     def version_updates_subject
-      replace_pattern(
+      evaluate_expression(
         @issue.project.zulip_version_updates_subject_expression.present? ?
           @issue.project.zulip_version_updates_subject_expression :
           Setting.plugin_redmine_zulip["zulip_version_updates_subject_expression"]
@@ -50,13 +50,13 @@ module RedmineZulip
 
     private
 
-    def replace_pattern(pattern)
+    def evaluate_expression(expression)
       return nil if pattern.nil?
-      pattern.gsub("${issue_id}", "#{@issue.id}")
-             .gsub("${issue_subject}", @issue.subject_without_punctuation)
-             .gsub("${project_name}", @issue.project.name)
-             .gsub("${version_name}",
-                    @issue.fixed_version.nil? ? "" : @issue.fixed_version.name)
+      expression.gsub("${issue_id}", "#{@issue.id}")
+                .gsub("${issue_subject}", @issue.subject_without_punctuation)
+                .gsub("${project_name}", @issue.project.name)
+                .gsub("${version_name}",
+                        @issue.fixed_version.nil? ? "" : @issue.fixed_version.name)
     end
   end
 end
