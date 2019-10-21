@@ -34,22 +34,28 @@ rake redmine:plugins:migrate
 
 ## Configuring plugin settings
 
-#### Global settings
+Log into your Redmine instance, click on **Administration** in the top-left
+corner, then click on **Plugins**.
 
-Log into your Redmine instance, click on **Administration** in the top-left corner, then click on **Plugins**.
-
-Find the **Redmine Zulip** plugin, and click **Configure**. You must now set the following:
+Find the **Redmine Zulip** plugin, and click **Configure**. You must now set the
+following:
 
 * Zulip URL (e.g `https://yourZulipDomain.zulipchat.com/`)
 * Zulip Bot E-mail
 * Zulip Bot API key
+* Stream name *****
+* Issue updates subject *****
+* Version updates subject *****
 
+***** You may set dynamic values by using the following self-explanatory
+variables:
+
+* ${issue_id}
+* ${issue_subject}
+* ${project_name}
+* ${version_name}
 
 #### Project settings
 
-Go to your project's **Settings** page, and select the **Zulip** tab. Now, you may:
-
-* Specify the Zulip stream
-* Enable/disable private notifications on tasks assignments
-* Enable/disable notifications on issues update
-* Enable/disable notifications on milestone progress
+To override global settings project wise, go to your project's **Settings**
+page, and select the **Zulip** tab.
