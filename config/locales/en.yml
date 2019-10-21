@@ -14,7 +14,7 @@ en:
   field_zulip_api_key: Zulip Bot API key
   field_zulip_stream_expression: Stream name expression
   field_zulip_issue_updates_subject_expression:  >
-    Issue updateds subject expression
+    Issue updates subject expression
   field_zulip_version_updates_subject_expression: >
     Version updates subject expression
   zulip_notify_assignment: >
