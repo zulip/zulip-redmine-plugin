@@ -13,16 +13,16 @@
       <%= f.text_field :zulip_api_key %>
     </p>
     <p>
-      <%= content_tag(:label, l(:field_zulip_stream_pattern)) %>
-      <%= f.text_field :zulip_stream_pattern %>
+      <%= content_tag(:label, l(:field_zulip_stream_expression)) %>
+      <%= f.text_field :zulip_stream_expression %>
     </p>
     <p>
-      <%= content_tag(:label, l(:field_zulip_issue_updates_subject_pattern)) %>
-      <%= f.text_field :zulip_issue_updates_subject_pattern %>
+      <%= content_tag(:label, l(:field_zulip_issue_updates_subject_expression)) %>
+      <%= f.text_field :zulip_issue_updates_subject_expression %>
     </p>
     <p>
-      <%= content_tag(:label, l(:field_zulip_version_updates_subject_pattern)) %>
-      <%= f.text_field :zulip_version_updates_subject_pattern %>
+      <%= content_tag(:label, l(:field_zulip_version_updates_subject_expression)) %>
+      <%= f.text_field :zulip_version_updates_subject_expression %>
     </p>
   </div>
   <%= f.submit "Save" %>

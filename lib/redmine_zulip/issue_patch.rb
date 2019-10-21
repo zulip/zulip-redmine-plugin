@@ -117,6 +117,7 @@ module RedmineZulip
         id: id,
         url: url,
         status: status.name,
+        project: project.name,
         subject: subject_without_punctuation,
         description: description_truncated,
         status_label: Issue.human_attribute_name(:status, locale: locale)
@@ -144,6 +145,7 @@ module RedmineZulip
         user: User.current.name,
         id: id,
         url: url,
+        project: project.name,
         subject: subject_without_punctuation
       })
       zulip_api.messages.send(
@@ -159,6 +161,7 @@ module RedmineZulip
         user: User.current.name,
         id: id,
         url: url,
+        project: project.name,
         subject: subject_without_punctuation,
         locale: locale
       })
@@ -217,6 +220,7 @@ module RedmineZulip
       message = I18n.t("zulip_notify_destroyed", {
         user: User.current.name,
         id: id,
+        project: project.name,
         subject: subject_without_punctuation,
         locale: locale
       })
@@ -234,6 +238,7 @@ module RedmineZulip
         user: User.current.name,
         id: id,
         url: url,
+        project: project.name,
         subject: subject_without_punctuation,
         description: description_truncated,
         assigned_to_label: Issue.human_attribute_name(:assigned_to, locale: locale),
@@ -264,6 +269,7 @@ module RedmineZulip
         user: User.current.name,
         id: id,
         url: url,
+        project: project.name,
         subject: subject_without_punctuation,
       })
       if previous_changes.include?("description")
@@ -333,6 +339,7 @@ module RedmineZulip
         locale: Setting.default_language,
         user: User.current.name,
         id: id,
+        project: project.name,
         subject: subject_without_punctuation
       })
       zulip_api.messages.send(
@@ -349,6 +356,7 @@ module RedmineZulip
         user: User.current.name,
         id: id,
         url: url,
+        project: project.name,
         subject: subject_without_punctuation,
         fixed_version: fixed_version
       })
@@ -369,6 +377,7 @@ module RedmineZulip
         user: User.current.name,
         id: id,
         url: url,
+        project: project.name,
         subject: subject_without_punctuation,
         fixed_version: previous_fixed_version
       })
@@ -387,6 +396,7 @@ module RedmineZulip
         user: User.current.name,
         id: id,
         url: url,
+        project: project.name,
         subject: subject_without_punctuation,
         previous_status: IssueStatus.find(previous_status_id),
         current_status: status
@@ -404,6 +414,7 @@ module RedmineZulip
         locale: Setting.default_language,
         user: User.current.name,
         id: id,
+        project: project.name,
         subject: subject_without_punctuation
       })
       zulip_api.messages.send(

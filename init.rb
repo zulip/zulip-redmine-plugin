@@ -12,8 +12,8 @@ Redmine::Plugin.register :redmine_zulip do
     "zulip_url" => "",
     "zulip_email" => "",
     "zulip_api_key" => "",
-    "zulip_stream_pattern" => "${project_name}",
-    "zulip_issue_updates_subject_pattern" => "${issue_subject}",
-    "zulip_version_updates_subject_pattern" => "Version ${version_name}"
+    "zulip_stream_expression" => "${project_name}",
+    "zulip_issue_updates_subject_expression" => "${issue_subject}",
+    "zulip_version_updates_subject_expression" => "Version ${version_name}"
   }
 end

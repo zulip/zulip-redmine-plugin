@@ -3,12 +3,21 @@ pt-BR:
   zulip_settings_label_url: URL da instância Zulip
   zulip_settings_label_email: E-mail do Bot no Zulip
   zulip_settings_label_api_key: API key do Bot no Zulip
-  field_zulip_stream: Nome do fluxo
-  field_zulip_private_messages: Notificar atribuições
-  field_zulip_subject_issue: Notificar a atualização de tarefas
-  field_zulip_subject_version: Notifier o avanço das milestones
+  zulip_settings_label_stream_expression: Expressão do nome do fluxo
+  zulip_settings_label_issue_updates_subject_expression: >
+    Expressão dos tópicos de atualizações de tarefas
+  zulip_settings_label_version_updates_subject_expression: >
+    Expressão dos tópicos de atualizações de versões
+  field_zulip_url: Zulip URL
+  field_zulip_email: Zulip e-mail
+  field_zulip_api_key: Zulip Bot API key
+  field_zulip_stream_expression: Expressão do nome do fluxo
+  field_zulip_issue_updates_subject_expression:  >
+    Expressão dos tópicos de atualizações de tarefas
+  field_zulip_version_updates_subject_expression: >
+    Expressão dos tópicos de atualizações de versões
   zulip_notify_assignment: >
-    %{user} **atribuiu** a tarefa [%{id}: %{subject}](%{url}) para **você**:
+    %{user} **atribuiu** a tarefa [[%{project}#%{id}] %{subject}](%{url}) para **você**:
 
 
     ~~~quote
@@ -21,16 +30,16 @@ pt-BR:
     * **%{status_label}**: %{status}
 
   zulip_notify_unassignment: >
-    %{user} **desatribuiu** a tarefa [%{id}: %{subject}](%{url}) de **você**.
+    %{user} **desatribuiu** a tarefa [[%{project}#%{id}] %{subject}](%{url}) de **você**.
 
   zulip_notify_updated: >
-    %{user} **modificou** a tarefa [%{id}: %{subject}](%{url}).
+    %{user} **modificou** a tarefa [[%{project}#%{id}] %{subject}](%{url}).
 
   zulip_notify_destroyed: >
     %{user} **excluiu** a tarefa **%{id}: %{subject}**.
 
   zulip_init_issue_subject: >
-    %{user} **criou** a tarefa [%{id}: %{subject}](%{url}):
+    %{user} **criou** a tarefa [[%{project}#%{id}] %{subject}](%{url}):
 
 
     ~~~quote
@@ -44,11 +53,11 @@ pt-BR:
     * **%{status_label}**: %{status}
 
   zulip_update_version_subject_added: >
-    %{user} **adicionou** a tarefa [%{id}: %{subject}](%{url}) à versão **%{fixed_version}**.
+    %{user} **adicionou** a tarefa [[%{project}#%{id}] %{subject}](%{url}) à versão **%{fixed_version}**.
 
   zulip_update_version_subject_removed: >
-    %{user} **removeu** a tarefa [%{id}: %{subject}](%{url}) da versão **%{fixed_version}**.
+    %{user} **removeu** a tarefa [[%{project}#%{id}] %{subject}](%{url}) da versão **%{fixed_version}**.
 
   zulip_update_version_subject_status: >
-    %{user} **modificou o status** da tarefa [%{id}: %{subject}](%{url}) de
+    %{user} **modificou o status** da tarefa [[%{project}#%{id}] %{subject}](%{url}) de
     *~~%{previous_status}~~* para **%{current_status}**.

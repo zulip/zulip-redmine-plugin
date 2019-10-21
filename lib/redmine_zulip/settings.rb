@@ -26,25 +26,25 @@ module RedmineZulip
 
     def stream
       replace_pattern(
-        @issue.project.zulip_stream_pattern.present? ?
-          @issue.project.zulip_stream_pattern :
-          Setting.plugin_redmine_zulip["zulip_stream_pattern"]
+        @issue.project.zulip_stream_expression.present? ?
+          @issue.project.zulip_stream_expression :
+          Setting.plugin_redmine_zulip["zulip_stream_expression"]
       )
     end
 
     def issue_updates_subject
       replace_pattern(
-        @issue.project.zulip_issue_updates_subject_pattern.present? ?
-          @issue.project.zulip_issue_updates_subject_pattern :
-          Setting.plugin_redmine_zulip["zulip_issue_updates_subject_pattern"]
+        @issue.project.zulip_issue_updates_subject_expression.present? ?
+          @issue.project.zulip_issue_updates_subject_expression :
+          Setting.plugin_redmine_zulip["zulip_issue_updates_subject_expression"]
       )
     end
 
     def version_updates_subject
       replace_pattern(
-        @issue.project.zulip_version_updates_subject_pattern.present? ?
-          @issue.project.zulip_version_updates_subject_pattern :
-          Setting.plugin_redmine_zulip["zulip_version_updates_subject_pattern"]
+        @issue.project.zulip_version_updates_subject_expression.present? ?
+          @issue.project.zulip_version_updates_subject_expression :
+          Setting.plugin_redmine_zulip["zulip_version_updates_subject_expression"]
       )
     end
 
