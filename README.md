@@ -43,11 +43,11 @@ following:
 * Zulip URL (e.g `https://yourZulipDomain.zulipchat.com/`)
 * Zulip Bot E-mail
 * Zulip Bot API key
-* Stream name *****
-* Issue updates subject *****
-* Version updates subject *****
+* Stream name __*__
+* Issue updates subject __*__
+* Version updates subject __*__
 
-***** You may set dynamic values by using the following self-explanatory
+_*_ You may set dynamic values by using the following self-explanatory
 variables:
 
 * ${issue_id}
