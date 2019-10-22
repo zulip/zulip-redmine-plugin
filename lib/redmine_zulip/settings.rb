@@ -51,7 +51,7 @@ module RedmineZulip
     private
 
     def evaluate_expression(expression)
-      return nil if pattern.nil?
+      return nil if expression.nil?
       expression.gsub("${issue_id}", "#{@issue.id}")
                 .gsub("${issue_subject}", @issue.subject_without_punctuation)
                 .gsub("${project_name}", @issue.project.name)
