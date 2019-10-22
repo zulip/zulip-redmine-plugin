@@ -95,6 +95,10 @@ module RedmineZulip
       subject.end_with?(".") ? subject[0..-1] : subject
     end
 
+    def zulip_settings
+      @_zulip_settings ||= RedmineZulip::Settings.new(self)
+    end
+
     private
 
     def zulip_api
@@ -103,10 +107,6 @@ module RedmineZulip
         email: zulip_settings.zulip_email,
         key: zulip_settings.zulip_api_key
       )
-    end
-
-    def zulip_settings
-      @_zulip_settings ||= RedmineZulip::Settings.new(self)
     end
 
     def notify_assignment
