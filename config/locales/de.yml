@@ -1,0 +1,65 @@
+de:
+  label_redmine_zulip: Zulip
+  zulip_settings_header: Zulip Plugin Konfiguration
+  zulip_settings_label_url: Zulip URL
+  zulip_settings_label_email: Zulip Bot E-Mail
+  zulip_settings_label_api_key: Zulip Bot API Key
+  zulip_settings_label_stream_expression: Stream Name
+  zulip_settings_label_issue_updates_subject_expression: >
+    Ticket-Update-Betreff
+  zulip_settings_label_version_updates_subject_expression: >
+    Versions-Update-Betreff
+  field_zulip_url: Zulip URL
+  field_zulip_email: Zulip E-Mail
+  field_zulip_api_key: Zulip Bot API Key
+  field_zulip_stream_expression: Stream Name
+  field_zulip_issue_updates_subject_expression:  >
+    Ticket-Update-Betreff
+  field_zulip_version_updates_subject_expression: >
+    Versions-Update-Betreff
+  zulip_notify_assignment: >
+    %{user} **assigned** issue [[%{project}#%{id}] %{subject}](%{url}) to **you**:
+
+
+    ~~~quote
+
+    %{description}
+
+    ~~~
+
+
+    * **%{status_label}**: %{status}
+
+
+  zulip_notify_unassignment: >
+     %{user} hat die **Zuweisung** auf Ticket [[%{project_name} #%{id}] %{subject}](%{url}) **an Sie entfernt**.
+
+  zulip_notify_updated: >
+    %{user} hat Ticket [[%{project_name} #%{id}] %{subject}](%{url}) **geändert**.
+
+  zulip_notify_destroyed: >
+    %{user} hat Ticket [[%{project_name} #%{id}] %{subject}](%{url}) **gelöscht**.
+
+  zulip_init_issue_subject: >
+    %{user} hat Ticket [[%{project_name} #%{id}] %{subject}](%{url}) **erstellt**:
+
+
+    ~~~quote
+
+    %{description}
+
+    ~~~
+
+    * **%{assigned_to_label}**: %{assigned_to}
+
+    * **%{status_label}**: %{status}
+
+  zulip_update_version_subject_added: >
+    %{user} hat Ticket [[%{project_name} #%{id}] %{subject}](%{url}) zur Version **%{fixed_version} erstellt**.
+
+  zulip_update_version_subject_removed: >
+    %{user} hat Ticket [[%{project_name} #%{id}] %{subject}](%{url}) zur Version **%{fixed_version} entfernt**.
+
+  zulip_update_version_subject_status: >
+    %{user} hat den Status von Ticket [[%{project_name} #%{id}] %{subject}](%{url}) von
+    *~~%{previous_status}~~* auf **%{current_status} geändert**.
