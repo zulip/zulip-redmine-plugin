@@ -18,7 +18,7 @@ de:
   field_zulip_version_updates_subject_expression: >
     Versions-Update-Betreff
   zulip_notify_assignment: >
-    %{user} hat **Ihnen** Ticket [[%{project_name} #%{id}] %{subject}](%{url}) **zugewiesen**:
+    %{user} hat **Ihnen** Ticket [[%{project} #%{id}] %{subject}](%{url}) **zugewiesen**:
 
 
     ~~~quote
@@ -32,16 +32,16 @@ de:
 
 
   zulip_notify_unassignment: >
-     %{user} hat die **Zuweisung an Sie** auf Ticket [[%{project_name} #%{id}] %{subject}](%{url}) **entfernt**.
+     %{user} hat die **Zuweisung an Sie** auf Ticket [[%{project} #%{id}] %{subject}](%{url}) **entfernt**.
 
   zulip_notify_updated: >
-    %{user} hat Ticket [[%{project_name} #%{id}] %{subject}](%{url}) **geändert**.
+    %{user} hat Ticket [[%{project} #%{id}] %{subject}](%{url}) **geändert**.
 
   zulip_notify_destroyed: >
-    %{user} hat Ticket [[%{project_name} #%{id}] %{subject}](%{url}) **gelöscht**.
+    %{user} hat Ticket [[%{project} #%{id}] %{subject}](%{url}) **gelöscht**.
 
   zulip_init_issue_subject: >
-    %{user} hat Ticket [[%{project_name} #%{id}] %{subject}](%{url}) **erstellt**:
+    %{user} hat Ticket [[%{project} #%{id}] %{subject}](%{url}) **erstellt**:
 
 
     ~~~quote
@@ -55,11 +55,11 @@ de:
     * **%{status_label}**: %{status}
 
   zulip_update_version_subject_added: >
-    %{user} hat Ticket [[%{project_name} #%{id}] %{subject}](%{url}) zur Version **%{fixed_version} erstellt**.
+    %{user} hat Ticket [[%{project} #%{id}] %{subject}](%{url}) zur Version **%{fixed_version} erstellt**.
 
   zulip_update_version_subject_removed: >
-    %{user} hat Ticket [[%{project_name} #%{id}] %{subject}](%{url}) zur Version **%{fixed_version} entfernt**.
+    %{user} hat Ticket [[%{project} #%{id}] %{subject}](%{url}) zur Version **%{fixed_version} entfernt**.
 
   zulip_update_version_subject_status: >
-    %{user} hat den Status von Ticket [[%{project_name} #%{id}] %{subject}](%{url}) von
+    %{user} hat den Status von Ticket [[%{project} #%{id}] %{subject}](%{url}) von
     *~~%{previous_status}~~* auf **%{current_status} geändert**.
