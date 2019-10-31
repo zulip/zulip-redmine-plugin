@@ -110,7 +110,8 @@ module RedmineZulip
     end
 
     def notify_assignment
-      locale = assigned_to.language
+      locale = assigned_to.language.present? ?
+                 assigned_to.language : Setting.default_language
       message = I18n.t("zulip_notify_assignment", {
         locale: locale,
         user: User.current.name,
@@ -141,12 +142,15 @@ module RedmineZulip
       previous_assigned_to = User.find(
         previous_changes["assigned_to_id"].first
       )
+      locale = previous_assigned_to.language.present? ?
+                 previous_assigned_to.language : Setting.default_language
       message = I18n.t("zulip_notify_unassignment", {
         user: User.current.name,
         id: id,
         url: url,
         project: project.name,
-        subject: subject_without_punctuation
+        subject: subject_without_punctuation,
+        locale: locale
       })
       zulip_api.messages.send(
         type: "private",
@@ -156,7 +160,8 @@ module RedmineZulip
     end
 
     def notify_assigned_to_issue_updated
-      locale = assigned_to.language
+      locale = assigned_to.language.present? ?
+                 assigned_to.language : Setting.default_language
       message = I18n.t("zulip_notify_updated", {
         user: User.current.name,
         id: id,
@@ -216,7 +221,8 @@ module RedmineZulip
     end
 
     def notify_assigned_to_issue_destroyed
-      locale = assigned_to.language
+      locale = assigned_to.language.present? ?
+                 assigned_to.language : Setting.default_language
       message = I18n.t("zulip_notify_destroyed", {
         user: User.current.name,
         id: id,
