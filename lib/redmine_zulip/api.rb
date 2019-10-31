@@ -41,7 +41,8 @@ module RedmineZulip
           http.request(req)
         end
         res.code == "200"
-      rescue SocketError => _
+      rescue SocketError => e
+        Rails.logger.warn("Zulip API error: #{e.message}")
         false
       end
     end
