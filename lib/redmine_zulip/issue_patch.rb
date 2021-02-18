@@ -141,22 +141,24 @@ module RedmineZulip
     def notify_unassignment
       previous_assigned_to = User.find(
         previous_changes["assigned_to_id"].first
-      )
-      locale = previous_assigned_to.language.present? ?
-                 previous_assigned_to.language : Setting.default_language
-      message = I18n.t("zulip_notify_unassignment", {
-        user: User.current.name,
-        id: id,
-        url: url,
-        project: project.name,
-        subject: subject_without_punctuation,
-        locale: locale
-      })
-      zulip_api.messages.send(
-        type: "private",
-        content: message,
-        to: previous_assigned_to.mail
-      )
+      ) rescue nil
+      if previous_changes.nil?
+        locale = previous_assigned_to.language.present? ?
+                  previous_assigned_to.language : Setting.default_language
+        message = I18n.t("zulip_notify_unassignment", {
+          user: User.current.name,
+          id: id,
+          url: url,
+          project: project.name,
+          subject: subject_without_punctuation,
+          locale: locale
+        })
+        zulip_api.messages.send(
+          type: "private",
+          content: message,
+          to: previous_assigned_to.mail
+        )
+      end
     end
 
     def notify_assigned_to_issue_updated
@@ -293,7 +295,10 @@ module RedmineZulip
         message += "\n* **#{Issue.human_attribute_name(:assigned_to, locale: locale)}**: "
         previous_assigned_to_id = previous_changes["assigned_to_id"].first
         if previous_assigned_to_id.present?
-          previous_assigned_to = User.find(previous_assigned_to_id)
+          previous_assigned_to = User.find(previous_assigned_to_id) rescue nil
+          if previous_assigned_to.nil?
+            previous_assigned_to = Group.find(previous_assigned_to_id) rescue nil
+          end
           message += "*~~#{previous_assigned_to.name}~~* " if previous_assigned_to.present?
         end
         if assigned_to.present?
