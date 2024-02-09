@@ -9,6 +9,7 @@ Get Zulip notifications for your Redmine issues!
 | 1.x                          | 3.x             |
 | 2.x                          | 3.x             |
 | 3.x                          | 4.x             |
+| 4.x                          | 5.x             |
 
 ## Installing
 
